@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
-import Spline from '@splinetool/react-spline';
 import { Plane, BadgeCheck, Cog } from 'lucide-react';
-import ErrorBoundary from './ErrorBoundary';
+import AirplaneIllustration from './AirplaneIllustration';
 
 const AIRCRAFTS = [
   {
@@ -11,7 +10,6 @@ const AIRCRAFTS = [
     speedKts: 490,
     capacity: 525,
     comfort: 'lux',
-    scene: 'https://prod.spline.design/8a8V0-1dWm0sA0Yq/scene.splinecode',
   },
   {
     id: 'b777x',
@@ -20,7 +18,6 @@ const AIRCRAFTS = [
     speedKts: 515,
     capacity: 426,
     comfort: 'prem',
-    scene: 'https://prod.spline.design/lqk2m1QUnwQ5Jv5r/scene.splinecode',
   },
   {
     id: 'e195',
@@ -29,7 +26,6 @@ const AIRCRAFTS = [
     speedKts: 447,
     capacity: 146,
     comfort: 'smart',
-    scene: 'https://prod.spline.design/5w2qk7lV8cL8q9wU/scene.splinecode',
   },
 ];
 
@@ -45,25 +41,18 @@ export default function AircraftSelector3D({ language = 'en', selectedAircraft, 
 
   const aircraft = useMemo(() => AIRCRAFTS.find(a => a.id === selectedAircraft) || AIRCRAFTS[0], [selectedAircraft]);
 
+  const tint = airline?.color || '#2563EB';
+
   return (
     <section className="max-w-6xl mx-auto px-4">
       <div className="grid md:grid-cols-2 gap-6 items-stretch">
         <div className="rounded-xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900">
-          <ErrorBoundary>
-            <div className="relative h-[420px]">
-              <Spline scene={aircraft.scene} style={{ width: '100%', height: '100%' }} />
-              {airline && (
-                <div
-                  className="absolute inset-0 pointer-events-none mix-blend-multiply opacity-20"
-                  style={{ backgroundColor: airline.color }}
-                  aria-hidden
-                />
-              )}
-            </div>
-          </ErrorBoundary>
+          <div className="relative h-[420px]">
+            <AirplaneIllustration model={aircraft.id} tint={tint} />
+          </div>
           <div className="p-4 border-t border-neutral-200 dark:border-neutral-800 flex flex-wrap items-center gap-3">
             <div className="text-sm text-neutral-600 dark:text-neutral-300">
-              {isEN ? 'Tip: Drag to rotate, scroll to zoom.' : 'Tips: Seret untuk memutar, gulir untuk memperbesar.'}
+              {isEN ? 'Static preview: pick an aircraft and airline tint below.' : 'Pratinjau statis: pilih pesawat dan warna livery di bawah.'}
             </div>
             <div className="ml-auto flex items-center gap-2">
               <button onClick={onAISuggest} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border border-blue-600 text-blue-700 dark:text-blue-300 hover:bg-blue-50 dark:hover:bg-blue-900/30">
@@ -121,7 +110,7 @@ export default function AircraftSelector3D({ language = 'en', selectedAircraft, 
                 </div>
                 <div>
                   <div className="font-medium text-neutral-900 dark:text-white">{airline.name}</div>
-                  <div className="text-sm text-neutral-500 dark:text-neutral-400">{isEN ? 'Livery tint applied to 3D preview' : 'Warna livery diterapkan ke pratinjau 3D'}</div>
+                  <div className="text-sm text-neutral-500 dark:text-neutral-400">{isEN ? 'Livery tint applied to image preview' : 'Warna livery diterapkan ke pratinjau gambar'}</div>
                 </div>
               </div>
             </div>
