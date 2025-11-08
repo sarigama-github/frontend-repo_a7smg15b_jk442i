@@ -24,13 +24,6 @@ function App() {
 
   const isEN = language === 'en';
 
-  function handleAISuggest() {
-    const long = selectedRoute === 'dps-sin';
-    const short = selectedRoute === 'cgk-sub';
-    const suggestion = long ? 'b777x' : short ? 'e195' : 'a380';
-    setSelectedAircraft(suggestion);
-  }
-
   return (
     <div className="min-h-screen bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100">
       <HeaderBar theme={theme} onToggleTheme={toggleTheme} language={language} onToggleLanguage={toggleLanguage} />
@@ -38,12 +31,12 @@ function App() {
       <main className="py-8 space-y-8">
         <div className="max-w-6xl mx-auto px-4">
           <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">
-            {isEN ? '3D Aircraft Planner' : 'Perencana Pesawat 3D'}
+            {isEN ? 'Aircraft Planner' : 'Perencana Pesawat'}
           </h1>
           <p className="mt-2 text-neutral-600 dark:text-neutral-300 max-w-2xl">
             {isEN
-              ? 'Rotate and zoom a lightweight 3D airplane preview tinted by your chosen airline livery. Visualize routes, check weather, and checkout in minutes.'
-              : 'Putar dan perbesar pratinjau pesawat 3D ringan yang diberi warna sesuai livery maskapai pilihan Anda. Visualisasikan rute, cek cuaca, dan lanjut ke pemesanan dengan cepat.'}
+              ? 'Preview real aircraft photos, choose your route, and review a clear checkout summary.'
+              : 'Lihat foto pesawat nyata, pilih rute, dan tinjau ringkasan pemesanan dengan jelas.'}
           </p>
         </div>
 
@@ -53,7 +46,6 @@ function App() {
           setSelectedAircraft={setSelectedAircraft}
           airline={airline}
           setAirline={setAirline}
-          onAISuggest={handleAISuggest}
         />
 
         <ErrorBoundary>

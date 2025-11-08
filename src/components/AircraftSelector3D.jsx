@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
-import { Plane, BadgeCheck, Cog } from 'lucide-react';
-import AirplaneIllustration from './AirplaneIllustration';
+import { Plane, BadgeCheck } from 'lucide-react';
+import AirplanePhoto from './AirplanePhoto';
 
 const AIRCRAFTS = [
   {
@@ -36,7 +36,7 @@ const AIRLINES = [
   { id: 'singapore', name: 'Singapore Airlines', code: 'SQ', color: '#F59E0B' },
 ];
 
-export default function AircraftSelector3D({ language = 'en', selectedAircraft, setSelectedAircraft, airline, setAirline, onAISuggest }) {
+export default function AircraftSelector3D({ language = 'en', selectedAircraft, setSelectedAircraft, airline, setAirline }) {
   const isEN = language === 'en';
 
   const aircraft = useMemo(() => AIRCRAFTS.find(a => a.id === selectedAircraft) || AIRCRAFTS[0], [selectedAircraft]);
@@ -48,16 +48,11 @@ export default function AircraftSelector3D({ language = 'en', selectedAircraft, 
       <div className="grid md:grid-cols-2 gap-6 items-stretch">
         <div className="rounded-xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900">
           <div className="relative h-[420px]">
-            <AirplaneIllustration model={aircraft.id} tint={tint} />
+            <AirplanePhoto model={aircraft.id} tint={tint} />
           </div>
           <div className="p-4 border-t border-neutral-200 dark:border-neutral-800 flex flex-wrap items-center gap-3">
             <div className="text-sm text-neutral-600 dark:text-neutral-300">
-              {isEN ? 'Static preview: pick an aircraft and airline tint below.' : 'Pratinjau statis: pilih pesawat dan warna livery di bawah.'}
-            </div>
-            <div className="ml-auto flex items-center gap-2">
-              <button onClick={onAISuggest} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border border-blue-600 text-blue-700 dark:text-blue-300 hover:bg-blue-50 dark:hover:bg-blue-900/30">
-                <Cog size={16} /> {isEN ? 'AI Suggest' : 'Saran AI'}
-              </button>
+              {isEN ? 'Real aircraft photo with airline color tint overlay.' : 'Foto pesawat nyata dengan overlay warna livery.'}
             </div>
           </div>
         </div>
@@ -110,7 +105,7 @@ export default function AircraftSelector3D({ language = 'en', selectedAircraft, 
                 </div>
                 <div>
                   <div className="font-medium text-neutral-900 dark:text-white">{airline.name}</div>
-                  <div className="text-sm text-neutral-500 dark:text-neutral-400">{isEN ? 'Livery tint applied to image preview' : 'Warna livery diterapkan ke pratinjau gambar'}</div>
+                  <div className="text-sm text-neutral-500 dark:text-neutral-400">{isEN ? 'Livery color tint applied to the photo' : 'Warna livery diterapkan ke foto'}</div>
                 </div>
               </div>
             </div>
