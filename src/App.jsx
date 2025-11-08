@@ -4,6 +4,7 @@ import AircraftSelector3D from './components/AircraftSelector3D';
 import RouteVisualizer from './components/RouteVisualizer';
 import Checkout from './components/Checkout';
 import FooterBar from './components/FooterBar';
+import ErrorBoundary from './components/ErrorBoundary';
 
 function App() {
   const [theme, setTheme] = useState('light');
@@ -25,8 +26,6 @@ function App() {
   const isEN = language === 'en';
 
   function handleAISuggest() {
-    // Simple heuristic recommender
-    // If route is long pick 777X, short pick E195, else A380
     const long = selectedRoute === 'dps-sin';
     const short = selectedRoute === 'cgk-sub';
     const suggestion = long ? 'b777x' : short ? 'e195' : 'a380';
@@ -49,23 +48,27 @@ function App() {
           </p>
         </div>
 
-        <AircraftSelector3D
-          language={language}
-          selectedAircraft={selectedAircraft}
-          setSelectedAircraft={setSelectedAircraft}
-          airline={airline}
-          setAirline={setAirline}
-          onAISuggest={handleAISuggest}
-          animations={animations}
-          setAnimations={setAnimations}
-        />
+        <ErrorBoundary>
+          <AircraftSelector3D
+            language={language}
+            selectedAircraft={selectedAircraft}
+            setSelectedAircraft={setSelectedAircraft}
+            airline={airline}
+            setAirline={setAirline}
+            onAISuggest={handleAISuggest}
+            animations={animations}
+            setAnimations={setAnimations}
+          />
+        </ErrorBoundary>
 
-        <RouteVisualizer
-          language={language}
-          selectedRoute={selectedRoute}
-          setSelectedRoute={setSelectedRoute}
-          selectedAircraft={selectedAircraft}
-        />
+        <ErrorBoundary>
+          <RouteVisualizer
+            language={language}
+            selectedRoute={selectedRoute}
+            setSelectedRoute={setSelectedRoute}
+            selectedAircraft={selectedAircraft}
+          />
+        </ErrorBoundary>
 
         <Checkout
           language={language}
