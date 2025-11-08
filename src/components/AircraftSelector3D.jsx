@@ -40,7 +40,7 @@ const AIRLINES = [
   { id: 'singapore', name: 'Singapore Airlines', code: 'SQ', color: '#F59E0B' },
 ];
 
-export default function AircraftSelector3D({ language = 'en', selectedAircraft, setSelectedAircraft, airline, setAirline, onAISuggest, animations, setAnimations }) {
+export default function AircraftSelector3D({ language = 'en', selectedAircraft, setSelectedAircraft, airline, setAirline, onAISuggest }) {
   const isEN = language === 'en';
 
   const aircraft = useMemo(() => AIRCRAFTS.find(a => a.id === selectedAircraft) || AIRCRAFTS[0], [selectedAircraft]);
@@ -50,23 +50,21 @@ export default function AircraftSelector3D({ language = 'en', selectedAircraft, 
       <div className="grid md:grid-cols-2 gap-6 items-stretch">
         <div className="rounded-xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900">
           <ErrorBoundary>
-            <div className="h-[420px]">
+            <div className="relative h-[420px]">
               <Spline scene={aircraft.scene} style={{ width: '100%', height: '100%' }} />
+              {airline && (
+                <div
+                  className="absolute inset-0 pointer-events-none mix-blend-multiply opacity-20"
+                  style={{ backgroundColor: airline.color }}
+                  aria-hidden
+                />
+              )}
             </div>
           </ErrorBoundary>
           <div className="p-4 border-t border-neutral-200 dark:border-neutral-800 flex flex-wrap items-center gap-3">
-            <button
-              onClick={() => setAnimations({ ...animations, wings: !animations.wings })}
-              className={`px-3 py-1.5 rounded-md text-sm border ${animations.wings ? 'bg-blue-600 text-white border-blue-600' : 'border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-200'}`}
-            >{isEN ? 'Wings' : 'Sayap'}</button>
-            <button
-              onClick={() => setAnimations({ ...animations, doors: !animations.doors })}
-              className={`px-3 py-1.5 rounded-md text-sm border ${animations.doors ? 'bg-blue-600 text-white border-blue-600' : 'border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-200'}`}
-            >{isEN ? 'Doors' : 'Pintu'}</button>
-            <button
-              onClick={() => setAnimations({ ...animations, lights: !animations.lights })}
-              className={`px-3 py-1.5 rounded-md text-sm border ${animations.lights ? 'bg-blue-600 text-white border-blue-600' : 'border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-200'}`}
-            >{isEN ? 'Cabin Lights' : 'Lampu Kabin'}</button>
+            <div className="text-sm text-neutral-600 dark:text-neutral-300">
+              {isEN ? 'Tip: Drag to rotate, scroll to zoom.' : 'Tips: Seret untuk memutar, gulir untuk memperbesar.'}
+            </div>
             <div className="ml-auto flex items-center gap-2">
               <button onClick={onAISuggest} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border border-blue-600 text-blue-700 dark:text-blue-300 hover:bg-blue-50 dark:hover:bg-blue-900/30">
                 <Cog size={16} /> {isEN ? 'AI Suggest' : 'Saran AI'}
@@ -123,7 +121,7 @@ export default function AircraftSelector3D({ language = 'en', selectedAircraft, 
                 </div>
                 <div>
                   <div className="font-medium text-neutral-900 dark:text-white">{airline.name}</div>
-                  <div className="text-sm text-neutral-500 dark:text-neutral-400">{isEN ? 'Crew and onboard facilities adapted' : 'Kru dan fasilitas disesuaikan'}</div>
+                  <div className="text-sm text-neutral-500 dark:text-neutral-400">{isEN ? 'Livery tint applied to 3D preview' : 'Warna livery diterapkan ke pratinjau 3D'}</div>
                 </div>
               </div>
             </div>

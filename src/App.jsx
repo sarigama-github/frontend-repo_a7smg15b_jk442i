@@ -12,7 +12,6 @@ function App() {
   const [selectedAircraft, setSelectedAircraft] = useState('a380');
   const [selectedRoute, setSelectedRoute] = useState('cgk-dps');
   const [airline, setAirline] = useState(null);
-  const [animations, setAnimations] = useState({ wings: false, doors: false, lights: true });
 
   useEffect(() => {
     const root = document.documentElement;
@@ -43,12 +42,11 @@ function App() {
           </h1>
           <p className="mt-2 text-neutral-600 dark:text-neutral-300 max-w-2xl">
             {isEN
-              ? 'Rotate, zoom, and customize your aircraft. Visualize routes, check weather, and checkout in minutes.'
-              : 'Putar, perbesar, dan sesuaikan pesawat Anda. Visualisasikan rute, cek cuaca, dan lanjut ke pemesanan dalam hitungan menit.'}
+              ? 'Rotate and zoom a lightweight 3D airplane preview tinted by your chosen airline livery. Visualize routes, check weather, and checkout in minutes.'
+              : 'Putar dan perbesar pratinjau pesawat 3D ringan yang diberi warna sesuai livery maskapai pilihan Anda. Visualisasikan rute, cek cuaca, dan lanjut ke pemesanan dengan cepat.'}
           </p>
         </div>
 
-        {/* Keep the selection UI active even if the 3D scene fails by handling errors inside the component */}
         <AircraftSelector3D
           language={language}
           selectedAircraft={selectedAircraft}
@@ -56,8 +54,6 @@ function App() {
           airline={airline}
           setAirline={setAirline}
           onAISuggest={handleAISuggest}
-          animations={animations}
-          setAnimations={setAnimations}
         />
 
         <ErrorBoundary>
