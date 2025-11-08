@@ -10,11 +10,13 @@ const PHOTO_MAP = {
     credit: 'Wikimedia Commons',
   },
   b777x: {
+    // Boeing 777X (777-9, N779XW)
     src: 'https://images.unsplash.com/photo-1567446188601-95f43044f6dc?ixid=M3w3OTkxMTl8MHwxfHNlYXJjaHwxfHxQbGFuZSUyMEFpcmJ1cyUyMEEzODB8ZW58MHwwfHx8MTc2MjYxODMzMHww&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80',
     alt: 'Plane Boeing 777X (777-9 N779XW)',
     credit: 'Wikimedia Commons',
   },
   e195: {
+    // Embraer E195-E2 (PR-ZIJ)
     src: 'https://images.unsplash.com/photo-1608340368093-74f5adefc14f?ixid=M3w3OTkxMTl8MHwxfHNlYXJjaHwxfHxQbGFuZSUyMEJvZWluZyUyMDc3N1glMjAlMjg3NzctOXxlbnwwfDB8fHwxNzYyNjE4NzMyfDA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80',
     alt: 'Plane Embraer E195-E2 (PR-ZIJ)',
     credit: 'Wikimedia Commons',
