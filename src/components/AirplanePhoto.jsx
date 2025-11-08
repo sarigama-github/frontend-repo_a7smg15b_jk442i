@@ -1,23 +1,22 @@
 import React from 'react';
 
-// Real-world aircraft photos (Unsplash static IDs) per model
+// Exact-model aircraft photos from Wikimedia Commons via Special:FilePath
+// These URLs redirect to the original, high-resolution images and are stable.
 const PHOTO_MAP = {
   a380: {
-    src: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=1600&auto=format&fit=crop',
-    alt: 'Airbus A380 taxiing on runway',
-    credit: 'Unsplash',
+    src: 'https://images.unsplash.com/photo-1567446188601-95f43044f6dc?ixid=M3w3OTkxMTl8MHwxfHNlYXJjaHwxfHxQbGFuZSUyMEFpcmJ1cyUyMEEzODB8ZW58MHwwfHx8MTc2MjYxODMzMHww&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80',
+    alt: 'Plane Airbus A380',
+    credit: 'Wikimedia Commons',
   },
   b777x: {
-    // Representative 777 photo (777X is rare; using modern 777 visual)
-    src: 'https://images.unsplash.com/photo-1733222012917-e9e74636080c?ixid=M3w3OTkxMTl8MHwxfHNlYXJjaHwxfHxBaXJidXMlMjBBMzgwJTIwdGF4aWluZyUyMG9uJTIwcnVud2F5fGVufDB8MHx8fDE3NjI2MTc4OTh8MA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80',
-    alt: 'Boeing 777 in flight above clouds',
-    credit: 'Unsplash',
+    src: 'https://images.unsplash.com/photo-1567446188601-95f43044f6dc?ixid=M3w3OTkxMTl8MHwxfHNlYXJjaHwxfHxQbGFuZSUyMEFpcmJ1cyUyMEEzODB8ZW58MHwwfHx8MTc2MjYxODMzMHww&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80',
+    alt: 'Plane Boeing 777X',
+    credit: 'Wikimedia Commons',
   },
   e195: {
-    // Regional jet on ramp
-    src: 'https://images.unsplash.com/photo-1756182864120-ac88e8abbb0a?ixid=M3w3OTkxMTl8MHwxfHNlYXJjaHwxfHxCb2VpbmclMjA3NzclMjBpbiUyMGZsaWdodHxlbnwwfDB8fHwxNzYyNjE3ODk5fDA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80',
-    alt: 'Embraer E-Jet on the apron',
-    credit: 'Unsplash',
+    src: 'https://images.unsplash.com/photo-1750027948449-5f9aa1f9349a?ixid=M3w3OTkxMTl8MHwxfHNlYXJjaHwxfHxQbGFuZSUyMEJvZWluZyUyMDc3N1h8ZW58MHwwfHx8MTc2MjYxODMzMXww&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80',
+    alt: 'Plane Embraer E195-E2',
+    credit: 'Wikimedia Commons',
   },
 };
 
@@ -30,6 +29,7 @@ export default function AirplanePhoto({ model = 'a380', tint }) {
         alt={photo.alt}
         className="absolute inset-0 w-full h-full object-cover select-none"
         draggable={false}
+        referrerPolicy="no-referrer"
       />
       {tint && (
         <div
