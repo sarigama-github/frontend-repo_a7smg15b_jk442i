@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import Spline from '@splinetool/react-spline';
 import { Plane, BadgeCheck, Cog } from 'lucide-react';
+import ErrorBoundary from './ErrorBoundary';
 
 const AIRCRAFTS = [
   {
@@ -48,9 +49,11 @@ export default function AircraftSelector3D({ language = 'en', selectedAircraft, 
     <section className="max-w-6xl mx-auto px-4">
       <div className="grid md:grid-cols-2 gap-6 items-stretch">
         <div className="rounded-xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900">
-          <div className="h-[420px]">
-            <Spline scene={aircraft.scene} style={{ width: '100%', height: '100%' }} />
-          </div>
+          <ErrorBoundary>
+            <div className="h-[420px]">
+              <Spline scene={aircraft.scene} style={{ width: '100%', height: '100%' }} />
+            </div>
+          </ErrorBoundary>
           <div className="p-4 border-t border-neutral-200 dark:border-neutral-800 flex flex-wrap items-center gap-3">
             <button
               onClick={() => setAnimations({ ...animations, wings: !animations.wings })}

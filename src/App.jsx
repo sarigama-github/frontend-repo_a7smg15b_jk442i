@@ -48,18 +48,17 @@ function App() {
           </p>
         </div>
 
-        <ErrorBoundary>
-          <AircraftSelector3D
-            language={language}
-            selectedAircraft={selectedAircraft}
-            setSelectedAircraft={setSelectedAircraft}
-            airline={airline}
-            setAirline={setAirline}
-            onAISuggest={handleAISuggest}
-            animations={animations}
-            setAnimations={setAnimations}
-          />
-        </ErrorBoundary>
+        {/* Keep the selection UI active even if the 3D scene fails by handling errors inside the component */}
+        <AircraftSelector3D
+          language={language}
+          selectedAircraft={selectedAircraft}
+          setSelectedAircraft={setSelectedAircraft}
+          airline={airline}
+          setAirline={setAirline}
+          onAISuggest={handleAISuggest}
+          animations={animations}
+          setAnimations={setAnimations}
+        />
 
         <ErrorBoundary>
           <RouteVisualizer
